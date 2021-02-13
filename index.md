@@ -1,6 +1,28 @@
-## Welcome to GitHub Pages
+# HCI Project 1 : Microwave Design Case study 
 
 You can use the [editor on GitHub](https://github.com/Wolfram235/MicrowaveDesignCaseStudy/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+
+## Objective
+
+To learn, understand and design a microwave interface by using the microwave in your apartment as an example and improve on its design.
+The purpose of this project is to give us some practice with the material in the design of everyday things.
+We use microwaves everyday. They have various designs for user controls but not all of them are designed at the best for users.
+
+## Issues with the current design
+	1. Controls are not intuitive :
+  The number pad is just 
+	2. Button is flush and no sign 
+	3. Does not warn about the contents being hot after microwaving
+	4. Does not show how to make it work
+	5. Hard time changing power 
+	6. Microwave details hidden
+	7. Microwave gets locked 
+	8. How much time to set for what cooking time
+	9. What utensils you cannot put inside
+	10. Turntable to put back??
+	11. No cleaning instructions
+
+
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
