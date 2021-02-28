@@ -8,6 +8,8 @@ The purpose of this project is to give us some practice with the material in the
 We use microwaves everyday. They have various designs for user controls but not all of them are designed at the best for users.
 
 ## Issues with the current design
+1. Controls are not intuitive
+2. This
 	1. Controls are not intuitive :
  		 For a first time user who does not know how to operate a microwave the order in which you press the buttons in order to turn the microwave on is not very intuitive, in other words it is not beginner friendly.
 	2. Button is flush and no sign :
