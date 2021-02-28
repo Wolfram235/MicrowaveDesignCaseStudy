@@ -8,27 +8,23 @@ The purpose of this project is to give us some practice with the material in the
 We use microwaves everyday. They have various designs for user controls but not all of them are designed at the best for users.
 
 ## Issues with the current design
-1. Controls are not intuitive
-2. This
-	1. Controls are not intuitive :
- 		 For a first time user who does not know how to operate a microwave the order in which you press the buttons in order to turn the microwave on is not very intuitive, in other words it is not beginner friendly.
-	2. Button is flush and no sign :
-	The button to open the microwave is almost flush with the control panel with no idications of it to be pressed for opening the door.
-	3. Does not warn about the contents being hot after microwaving : 
-	A warning sign that says the contents are hot after microwaving should be given, just as a subtle visual  hint to user.
-	4. Does not show how to make it work :
-	
-	5. Hard time changing power :
-	There is no direct way to control the power, even if you figure out the power controls it displays them as P1, P2... P10. Most cooking instructions mention the power levels in Watts, showing the power levels in terms of levels is not very intuitive
-	6. Microwave details hidden :
-	There are different microwaves with different wattage. Some food need a higher wattage microwave inorder to be cooked well. For this the details of the microwave or atleast its power should be shown to the user.
-	7. Microwave gets locked :
+1. Controls are not intuitive :
+	For a first time user who does not know how to operate a microwave the order in which you press the buttons in order to turn the microwave on is not very intuitive, in other words it is not beginner friendly.
+
+2. Button is flush and no sign :
+	The button to open the microwave is almost flush with the control panel with no indications or feedbacks of it being pressed for opening the door.
+
+3. No caution of materials to be used inside a microwave :
+	When a person who has never used a microwave uses it for the first time there is a high probability that they will not use microwave safe utensils inside the microwave.
+This is an extreme risk which can lead to a fire harazard and even damage the microwave itself. To avoid this the microwave should provide cautionary instruction as to what utensils can be used inside a microwave.
+
+4. Changing the power level :
+	Many of the food items that can be cooked in the microwave come with cooking instructions. These instructions are specific on the power level of the microwave and the time in which you cook the food. Different power levels have different signs. The microwave in my house has a feature to change the power level, but it is in terms of levels which starts from level one to level ten. This is not intuitive as we specifially need to set the power to some amount of watts.
+
+5. Microwave getting locked :
 	Some microwave have locks that get activated when you press the start button too many times. This seems like a child lock. If the elock gets activated the display goes blank, other than a very tiny symbol at the bottom of the microwave. This should be shownn to the user in a more proper way to make them aware that the microwave is locked.
-	8. How much time to set for what cooking time
 	
-	9. What utensils you cannot put inside
-	10. Turntable to put back??
-	11. No cleaning instructions
+	
 
 
 
