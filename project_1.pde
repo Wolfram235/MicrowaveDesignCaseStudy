@@ -1,199 +1,347 @@
+import controlP5.*;
+	
+import processing.sound.*;
 
-HScrollbar hs1;
+ControlP5 cp5;
+
 int i=1;
-int basex =850;
+int basex =925;
 int basey=350;
 int sliderTicksy1=310;
 int sliderTicksy2=330;
-String str = "300 W";
 
-int angle=1;
+PFont pf;
+int angle=0;
 boolean oc=false;
 boolean open=false;
+boolean started = false;
+boolean done= false;
+PImage microwaveInside;
+Knob myKnobA;
+Knob myKnobB;
+int knobValue = 100;
+int sliderTicks2 = 30;
+Controller  slider;
+
+Knob myKnobMIN;
+Knob myKnobSEC;
+int minVal = 0;
+int secVal = 0;
+int totalSec = 0;
+   int onesecond = 1000;
+      int time;
+PFont f;
+Button start;
+Button stop;
+Button regularFeatures;
+Button additionalFeatures;
+Button openDoor;
+
+SoundFile file;
+
+CheckBox checkbox;
+Textlabel displayText;
+
 void setup() {
-    size(1200,900,P3D);
-    hs1 = new HScrollbar(basex, basey, 280, 20, 16);
-       //door of microwave
-    fill(0,0,0);
+    size(1400,900,P3D);
+  pf= createFont("Arial",20);
+   smooth();
+  //
+  f = createFont("Arial", 24);
+ time=millis();
+microwaveInside = loadImage("micro.jpg");
   
-   
- 
+  cp5 = new ControlP5(this);
+  
+cp5.setFont(f);
+        //new Knob for keeping track of the minutes
+        myKnobMIN = cp5.addKnob("Minutes")
+                	.setRange(0,60)
+                	.setPosition(925,400)
+                	.setRadius(60)
+                	.setNumberOfTickMarks(60)
+                	.setTickMarkLength(4)
+                	.snapToTickMarks(true)
+                	.setColorForeground(color(255))
+                	.setColorBackground(color(0))
+                	.setColorActive(color(255,255,0))
+                	.setDragDirection(Knob.HORIZONTAL);   
+
+
+        myKnobMIN.getValueLabel().setFont(f);
+        myKnobMIN.getCaptionLabel().setFont(f);
+        myKnobMIN.setOffsetAngle(-HALF_PI);
+
+
+                myKnobSEC = cp5.addKnob("Seconds")
+                     .setRange(0,60)
+                     .setValue(secVal)
+                     .setPosition(1100,400)
+                     .setRadius(60)
+                     .setNumberOfTickMarks(60)
+                     .setTickMarkLength(4)
+                     .snapToTickMarks(true)
+                     .setColorForeground(color(255))
+                     .setColorBackground(color(0))
+                     .setColorActive(color(255,255,0))
+                     .setDragDirection(Knob.HORIZONTAL);
+                     
+        myKnobSEC.getValueLabel().setFont(f);
+        myKnobSEC.getCaptionLabel().setFont(f);
+        myKnobSEC.setOffsetAngle(-HALF_PI);
+
+  // slider for the power
+  slider= cp5.addSlider("Power")
+  .setCaptionLabel("Power :")
+     .setPosition(basex,basey)
+     .setWidth(300)
+     .setHeight(20)
+     .setRange(100,900) // values can range from big to small as well
+     .setValue(200)
+     .setNumberOfTickMarks(9)
+     .setSliderMode(Slider.FLEXIBLE)
+     ;
+
+   slider.getCaptionLabel().getStyle().marginTop = -25;
+   slider.getCaptionLabel().getStyle().marginLeft = -300;
+    slider.getCaptionLabel().setFont(pf);
+   slider.getValueLabel().getStyle().marginTop = -25;
+   slider.getValueLabel().getStyle().marginLeft = 100;
+  slider.getValueLabel().setFont(pf); 
+// microwave start button for countdown
+   start=cp5.addButton("Start")
+        .setValue(0)
+        .setPosition(basex+50,basey+250)
+        .setSize(80,50)
+        ;
+          start.getCaptionLabel().setFont(f); 
+      stop=cp5.addButton("Stop")
+        .setValue(0)
+        .setPosition(basex+160,basey+250)
+        .setSize(80,50)
+        ;
+        
+
+         openDoor  =cp5.addButton("Door")
+         .setCaptionLabel("Open Door")
+         .setPosition(basex, basey+320)
+         .setSize(290,60);
+        
+
+          checkbox = cp5.addCheckBox("checkBox")
+                .setPosition(950, 100)
+                .setColorForeground(color(120))
+                .setColorActive(color(255))
+                .setColorLabel(color(255))
+                .setSize(20, 20)
+                .setItemsPerRow(1)
+                .setSpacingColumn(30)
+                .setSpacingRow(30)
+                .addItem("Set Power", 1)
+                .addItem("Set Timer", 2)
+                .addItem("Press Start", 3)
+                .setFont(f)
+                ;
+                
+
+                displayText = cp5.addTextlabel("Display")
+                .setPosition(960,120)
+                ;
+               
 }
 
 
 void draw() {
     background(255,255,255);
-    // main shell of the microwave
-    fill(120, 160, 200);
-    rect(50, 50, 1100  , 700);
-
     
- //door lining 
- fill(255,255,255);
-    rect(80,80,740,640);
 
+    // main shell of the microwave
+    strokeWeight(2);
+    fill(120, 160, 200);
+   
+
+//rect(875,50,375,700);
+if(!open){
+     //side control panel rect
+     strokeWeight(8);
+     rect(50, 50, 1200  , 700);
+ //door lining 
+  strokeWeight(8);
+ fill(255,255,255);
+    if(angle>=0){
+      //when door closed inner door window panel
+       image(microwaveInside,  80  , 80,740,640);
+      fill(0,200);
+      rect(80,80,740,640);
+
+     
+    }
+}else{
+   //side control panel rectangle
+     strokeWeight(8);
+     
+rect(50, 50, 1200  , 700);
+
+}
 
 
     // display of microwave
-    fill(200,200,200);
-    rect(850,80,280,180);
+     strokeWeight(2);
+    fill(0);
+    rect(925,80,280,180);
 
     //slider for power
-     hs1.update();
-  hs1.display();
+
 
 //power slider ticks
-strokeWeight(3);
-stroke(0);
-int iwidth=55;
-textSize(25);
-text(str, basex-10, (sliderTicksy1-20)); 
-int count=1;
-line(basex ,sliderTicksy1, basex, sliderTicksy2);
-line((basex+(iwidth*count)) ,sliderTicksy1, (basex+(iwidth*count)), sliderTicksy2);
-count++;
-line((basex+(iwidth*count)) ,sliderTicksy1, (basex+(iwidth*count)), sliderTicksy2);
-count++;
-line((basex+(iwidth*count)) ,sliderTicksy1, (basex+(iwidth*count)), sliderTicksy2);
-count++;
-line((basex+(iwidth*count)) ,sliderTicksy1, (basex+(iwidth*count)), sliderTicksy2);
-count++;
-line((basex+(iwidth*count)) ,sliderTicksy1, (basex+(iwidth*count)), sliderTicksy2);
 
 
-     if(oc){
-       if(!open)
-    angle++;
-    else
-    angle--;
-      rotateY(-radians(angle));
-      println(angle);
-      if(angle>=90&& angle>=0){
-        oc=false;
-        //angle=0;
-      }
-    }
-    if(open&&!oc){
-  rotateY(90);
-  println("in open state");
-       rect(100, 100, 700  , 600);
-    }
-    else{
-      println("in close state");
-     rect(100, 100, 700  , 600);
-    }
- 
-}
+//knobs for time
+ fill(knobValue);
 
-class HScrollbar{
-  int swidth, sheight;    // width and height of bar
-  float xpos, ypos;       // x and y position of bar
-  float spos, newspos;    // x position of slider
-  float sposMin, sposMax; // max and min values of slider
-  int loose;              // how loose/heavy
-  boolean over;           // is the mouse over the slider?
-  boolean locked;
-  float ratio;
-  float precentVal;
 
-   HScrollbar (float xp, float yp, int sw, int sh, int l) {
-    swidth = sw;
-    sheight = sh;
-    int widthtoheight = sw - sh;
-    ratio = (float)sw / (float)widthtoheight;
-    xpos = xp;
-    ypos = yp-sheight/2;
-    spos = xpos + swidth/2 - sheight/2;
-    newspos = spos;
-    sposMin = xpos;
-    sposMax = xpos + swidth - sheight;
-    loose = l;
-    
-  }
-
-  void update() {
-    if (overEvent()) {
-      over = true;
-    } else {
-      over = false;
-    }
-    if (mousePressed && over) {
-      locked = true;
-    }
-    if (!mousePressed) {
-      locked = false;
-    }
-    if (locked) {
-      newspos = constrain(mouseX-sheight/2, sposMin, sposMax);
-       
-    }
-    if (abs(newspos - spos) > 1) {
-      spos = newspos;
-      println(getPos());
-    }
-
-   
-  }
-
-  float constrain(float val, float minv, float maxv) {
-    return min(max(val, minv), maxv);
-  }
-
-  boolean overEvent() {
-    if (mouseX > xpos && mouseX < xpos+swidth &&
-       mouseY > ypos && mouseY < ypos+sheight) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  void display() {
-    noStroke();
-    fill(204);
-    rect(xpos, ypos, swidth, sheight);
-    if (over || locked) {
-      fill(0, 0, 0);
-    } else {
-      fill(102, 102, 102);
-    }
-    rect(spos, ypos, sheight, sheight);
-  }
-
-  float getPos() {
-    // Convert spos to be values between
-    // 0 and the total width of the scrollbar
-
-    float val = spos -xpos;
-    float per = val/swidth;
-    per=per*100;
-if(per<=16){
-  str="100 W";
-}
-else if(per>16&& per<=32){
-  str="180 W";
-}
-else if(per>32&& per<=48){
-  str="300 W";
-}
-else if(per>48&& per<=64){
-  str="450 W";
-}
-else if(per>64&& per<=80){
-  str="600 W";
-}
-else if (per>80&& per<=100){
-  str="900 W";
-}
-
-    return per;
-  }
-}
-void mousePressed() {
-  // Rotate the shape around the z-axis each time the mouse is pressed
-println("pressed");
-oc=true;
- angle=0;
- open=!open;
-}
   
+
+    ///code to do countdown
+  
+          if (totalSec > 0 && (millis()-time)>= onesecond) {
+          
+            
+            totalSec--;
+            println(secVal);
+            secVal--;
+            if(secVal<=0) {
+              if(minVal==0) {
+                file = new SoundFile(this, "ding.mp3");
+  file.play();
+  displayText.setText("Your Food is cooked! \n \n \nCaution it is hot!");
+  done = true;
+              }
+              else {
+                minVal--;
+                secVal=60;
+              }
+            }
+            myKnobMIN.setValue(minVal);
+            myKnobSEC.setValue(secVal);
+            time=millis();
+            
+            
+            
+          }
+
+rotateTheDoor();
+//seperated door rectangle
+fill(255,0.1);
+rect(50,50,825,700);
+
+//delay the showing of the message using frame count.
+ if(started && frameCount %60==0){
+          checkbox.hide();
+           displayText.show();
+displayText.setText("Please wait while \n your food is cooking");
+started=false;
+          }
+       if(done && frameCount %700==0){
+         displayText.hide();
+         checkbox.show();
+         done=false;
+       }
+      if(open ){
+     image(microwaveInside,  80  , 80,740,640);
+      }
+     
+  
+}// Draw Function ends here****************************************************
+
+void rotateTheDoor(){
+       if(open){
+         checkbox.hide();
+         displayText.show();
+         displayText.setText("\tDoor is Open!! \n \n Remeber to only \n use Microwave safe \n dishes");
+         if(angle>=-90){
+  angle--;
+}
+         
+       } 
+       else{
+         
+       
+         if(angle<=0){
+           checkbox.show();
+         displayText.hide();
+         angle++;
+         }
+
+       }
+    pushMatrix();
+
+      rotateY(radians(angle));
+      strokeWeight(2);
+      fill(120, 160, 200);
+rect(50,50,825,700);
+ strokeWeight(8);
+ fill(0,0.2);
+    rect(80,80,740,640);
+    
+popMatrix();
+    
+      //println(angle);
+
+    
+  
+  
+}
+
+    
+      public void Start(int theValue) {
+          println("a button event from Start: "+theValue);
+          minVal = (int)myKnobMIN.getValue();
+          secVal = (int)myKnobSEC.getValue();
+          totalSec=secVal+(minVal*60);
+          checkbox.activate(2);
+          started=true;
+         
+        }
+
+  
+public void Stop (){
+ minVal = 0;
+ secVal = 0;
+ totalSec = 0;
+
+ myKnobMIN.setValue(minVal);
+            myKnobSEC.setValue(secVal);
+            checkbox.deactivateAll();
+            checkbox.show();
+            displayText.hide();
+}
+public void Door () {
+  println("From The Door");
+    open=!open;
+  if(open){
+  openDoor.setCaptionLabel("Close Door");
+  }
+  else{
+  openDoor.setCaptionLabel("Open Door");
+
+  }
+  oc=!oc;
+  
+
+}
+
+public void Power(int va){
+   // println("a slider event. setting background to ");
+  checkbox.activate(0);
+}
+
+
+void Seconds(int theValue) {
+ checkbox.activate(1);
+  //println("a knob event. setting background to "+theValue);
+}
+
+void Minutes(int min){
+ checkbox.activate(1);
+}
