@@ -19,7 +19,8 @@ We use microwaves every day. They have various designs for user controls but not
 
 
 ## GIF of the microwave being used
-![Microwave](https://github.com/Wolfram235/MicrowaveDesignCaseStudy/blob/gh-pages/giphy.gif)
+![Microwave](giphy.gif)
+
 ## Issues with the current design
 1. Controls are not intuitive :
 	For a first time user who does not know how to operate a microwave the order in which you press the buttons in order to turn the microwave on is not very intuitive, in other words it is not beginner friendly.
