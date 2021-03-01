@@ -20,6 +20,8 @@ We use microwaves every day. They have various designs for user controls but not
 
 ## GIF of the microwave being used
 ![Microwave](giphy.gif)
+[Link to the gif](giphy.gif)
+
 
 ## Issues with the current design
 1. Controls are not intuitive :
