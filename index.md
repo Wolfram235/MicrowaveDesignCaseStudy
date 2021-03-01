@@ -3,8 +3,9 @@
 ## Links
 
 Report Link: 
-Youtube Link: https://youtu.be/PX9oo9QAwKQ
-Github Link: https://github.com/Wolfram235/MicrowaveDesignCaseStudy
+1. Github Link: https://github.com/Wolfram235/MicrowaveDesignCaseStudy
+2. Youtube Link: https://youtu.be/PX9oo9QAwKQ
+
 
 ## Objective
 
