@@ -14,7 +14,9 @@ The purpose of this project is to give us some practice with the material in the
 We use microwaves every day. They have various designs for user controls but not all of them are designed at the best for users.
 
 ## Images of the microwave
-![Microwave](https://github.com/Wolfram235/MicrowaveDesignCaseStudy/blob/gh-pages/microwave.jpg)
+
+![Microwave](https://user-images.githubusercontent.com/31333864/109438704-b45c6c80-79f0-11eb-8af7-81d89765c3d3.jpg)
+
 
 ## GIF of the microwave being used
 ![Microwave](https://github.com/Wolfram235/MicrowaveDesignCaseStudy/blob/gh-pages/giphy.gif)
